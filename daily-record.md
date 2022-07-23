@@ -164,7 +164,7 @@
   ```vue
   <template>
     <div>
-      <my-component @hook:update="handleUpdate" />
+      <my-component @hook:updated="handleUpdate" />
     </div>
   </template>
   ```
