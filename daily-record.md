@@ -134,4 +134,39 @@
   fn.bind({}, 1)(2) // 1, 2
   ```
 
-  
+
+#### 2022.07.23
+
+##### 1. Hook理解
+
+> 参考文献：https://juejin.cn/post/7066951709678895141
+
+* `hook` 并不是只在前端所特有的关键词，在学界里是一直有的一个名称。`hook` 大体的意思是当程序运行到某一时机时，需要调取该时机的回调函数，这一过程就叫做 `hook`。
+
+* 在 `vue2` 中，其实我们也可以使用 `hook` 来注册 `mounted` 生命周期，如下：
+
+  ```vue
+  <script>
+  export default {
+    created() {
+      // 注册mounted的hook
+      this.$once('hook:mounted', () => {})
+      this.$on('hook:mounted', () => {})
+    }
+  }
+  </script>
+  ```
+
+  我们可以通过 `$on、$once` 去监听所有生命周期钩子函数。
+
+* `vue2` 中，还可以通过 `@hook:生命周期` 的形式，为组件绑定上对应的生命周期监听，如下：
+
+  ```vue
+  <template>
+    <div>
+      <my-component @hook:update="handleUpdate" />
+    </div>
+  </template>
+  ```
+
+  当组件 `my-component` 更新时，我们绑定的 `handleUpdate` 函数就会被调用。
