@@ -170,3 +170,33 @@
   ```
 
   当组件 `my-component` 更新时，我们绑定的 `handleUpdate` 函数就会被调用。
+
+#### 2022.07.24
+
+##### 1. vue2快速二次封装组件库
+
+* 二次封装一些组件在我们的业务开发中也是很常见的。因为我们不需要从0到1去编写一个完整的组件，而是直接对组件库提供的已有组件进行二次封装，达到我们需要的效果。
+
+* 但是当我们二次封装时，组件库提供一些 `props` 和 `events`，我们都需要重新声明然后传递吗？这样岂不是拉低效率啦。下面推荐 `vue2` 提供的两个全局属性，就可以解决上述的烦恼了
+
+* `$attrs`：包含了父作用域中不作为 `prop` 被识别的 `attribute`。`class` 和 `style` 除外。当一个组件没有声明任何的 `prop` 时，在组件上添加的属性都会被 `$attrs` 接收(class和style除外)。再配合 `v-bind`，我们就可以继续把这些属性向下传递。
+
+  ```vue
+  <template>
+    <div class="input-midlle">
+      <t-input v-bind="$attrs" />
+    </div>
+  </template>
+  ```
+
+* `$listencers`：包含了父作用域中使用 `v-on` 注册的事件监听器（原生事件除外，即使用 `.native` 修饰器的）。再继续使用 `v-on`，我们就可以把事件向下传递。
+
+  ```vue
+  <template>
+    <div class="input-midlle">
+      <t-input v-bind="$attrs" v-on="$listeners" />
+    </div>
+  </template>
+  ```
+
+  这样，一个完整的基于组件库二次封装的 `input` 就优雅的诞生了。不再需要将组件库的每个属性和事件重复写多一次啦。
