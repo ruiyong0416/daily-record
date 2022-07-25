@@ -200,3 +200,14 @@
   ```
 
   这样，一个完整的基于组件库二次封装的 `input` 就优雅的诞生了。不再需要将组件库的每个属性和事件重复写多一次啦。
+
+#### 2022.07.25
+
+##### 1. historyAPI
+
+> 参考文献：https://developer.mozilla.org/zh-CN/docs/Web/API/History
+
+* `history` 是 `HTML5` 的新特性之一，且在我们 `vue-router` 使用中，也提供了两种导航模式，分别是 `hash` 和 `history`。为了网站的美观，`history` 是比较受欢迎的。
+* 有时候我们有这样的场景，动态的更改导航栏，但不要页面刷新。这时候 `history` 的 `api` 就出场了，分别是 `pushState` 和 `replaceState`。
+* `pushState`：会往历史记录栈顶中推入一个新的 ` url`，且不会更新页面。
+* `replaceState`：会讲当前的记录移除并推入一个新的 `url`，来达到替换当前 `url` 的形式，且这个操作不会更新页面。
