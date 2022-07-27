@@ -211,3 +211,33 @@
 * 有时候我们有这样的场景，动态的更改导航栏，但不要页面刷新。这时候 `history` 的 `api` 就出场了，分别是 `pushState` 和 `replaceState`。
 * `pushState`：会往历史记录栈顶中推入一个新的 ` url`，且不会更新页面。
 * `replaceState`：会讲当前的记录移除并推入一个新的 `url`，来达到替换当前 `url` 的形式，且这个操作不会更新页面。
+
+#### 2022.07.27
+
+##### 1. CSS-BEM
+
+> 参考文献：https://juejin.cn/post/7024699040436748295
+
+* 在开发中，平时我们需要注重命名规范。因为命名的规范会增强我们的可读性。在 `css` 中，也有一套属于它们的命名规范，其中 `BEM` 就是其中的一种。
+
+* `BEM` 拆解：
+
+  * B：`Block` 表示 1 个块。
+
+  * E：`Element` 表示 1 个元素。
+
+  * M：`Modifier` 表示对块或元素的修饰符。
+
+  * 例子如下图：
+
+    * `navbar` 组件为 1 个 `block`。
+    * 左 `navbar__left`，标题 `navbar__title`，右 `navbar__right` 三个区间就是 `element`。
+    * 若有深色模式，则可以采用 `navbar--dark` 来修饰，即为 1 个 `modifier`。
+
+    ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/733b4695c5d4476881bfb5d18d2224ff~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+* `BEM` 的类名写法：
+  * .b
+  * .b__e
+  * .b__e-m
+  * .b-m
