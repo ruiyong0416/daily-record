@@ -241,3 +241,15 @@
   * .b__e
   * .b__e-m
   * .b-m
+
+#### 2022.07.28
+
+##### 1. 同源策略
+
+> 参考文献：https://mp.weixin.qq.com/s/aJeWl5XdwuytI6ILYC62Dg
+
+* 同源策略是浏览器的一个重要的安全策略。它用于限制一个 `origin` 的文档或者它加载的脚本与另一个 `origin` 的资源进行交互。其主要就是为了保护用户信息的安全，防止恶意的网站窃取数据。
+* 有 `3` 种表现：
+  * DOM层面：限制了来自不同源的 `Javascript` 脚本对当前 `DOM` 对象的读和写操作。（常见于iframe）
+  * 数据层面：限制了不同源的站点读取当前站点的 `Cookie`、`IndexedDB`、`localStorage` 等。
+  * 网络层面：限制了通过 `XMLHttpRequest` 等方式将站点的数据发送给不同源站点。
