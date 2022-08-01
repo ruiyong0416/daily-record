@@ -253,3 +253,31 @@
   * DOM层面：限制了来自不同源的 `Javascript` 脚本对当前 `DOM` 对象的读和写操作。（常见于iframe）
   * 数据层面：限制了不同源的站点读取当前站点的 `Cookie`、`IndexedDB`、`localStorage` 等。
   * 网络层面：限制了通过 `XMLHttpRequest` 等方式将站点的数据发送给不同源站点。
+
+#### 2022.08.01
+
+##### 1. vue中的keep-alive
+
+* 在 `vue3` 中，当我们封装了 `keep-alive` 时，又需要用 `include` 进行组件名筛选。组件的定义会有两种方法：
+
+  * `defineComponent`：这个写法和 `vue2` 一样，只需要使用 `name` 属性即可。
+
+  * `setup` 语法糖：这个也有两种方式可以定义 `name`。
+
+    ```vue
+    // 方式一
+    <script>
+    export default defineComponent({
+      name: 'xxx'
+    })
+    </script>
+    
+    <sciprt setup></script>
+    
+    // 方式二
+    <scipt setup></script>
+    // 此时为匿名组件，匿名组件的name为文件名
+    ```
+
+* `vue3` 使用 `<script setup>` 语法糖时，默认是匿名组件，匿名组件的 `name` 为文件名。假如有一个 `index.vue` 文件，其 `name` 为 `type: { __name: 'index' }`。
+
