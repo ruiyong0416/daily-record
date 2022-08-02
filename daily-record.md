@@ -281,3 +281,40 @@
 
 * `vue3` 使用 `<script setup>` 语法糖时，默认是匿名组件，匿名组件的 `name` 为文件名。假如有一个 `index.vue` 文件，其 `name` 为 `type: { __name: 'index' }`。
 
+#### 2022.08.02
+
+##### 1. css-var
+
+* 在现代化开发中，我们频繁使用 `css` 预解析器，这是一个很帮助开发的工具，它也可以编写一些函数，以及声明变量。
+
+* 现代浏览器也支持了 `css` 变量声明，如下：
+
+  ```css
+  :root {
+    --white-color: #fff
+  }
+  ```
+
+  `css` 变量一定要按照 `--` 开头的形式。
+
+* 在 `vue` 开发中，有时候我们也可以灵活的时候 `css-var`，下面是一个动态切换颜色的例子：
+
+  ```vue
+  <template>
+    <div :style="{ '--random-color': color }">
+      <span clss="random-color"></span>
+    </div>
+  </template>
+  
+  <script setup>
+  const color = ref('#fff')
+  </script>
+  
+  <style scoped>
+  .random-color {
+    color: var(--random-color);
+  }
+  </style>
+  ```
+
+  以上只是简单的使用方法，具体可以根据情况优化。切记如果 `css-var` 没有绑定在 `:root` 上时，需要动态的绑定在某元素的 `style` 上。且变量的获取会就近获取。
