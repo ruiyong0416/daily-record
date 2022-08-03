@@ -318,3 +318,28 @@
   ```
 
   以上只是简单的使用方法，具体可以根据情况优化。切记如果 `css-var` 没有绑定在 `:root` 上时，需要动态的绑定在某元素的 `style` 上。且变量的获取会就近获取。
+
+#### 2022.08.03
+
+##### 1. html布局
+
+* 一般在设计 `pc` 官网等一些不需要自适应或者响应式的网站时，我们最好定好一个最小宽度，来防止宽度过小导致样式错乱的问题。
+
+* 如上所说情况下，我们一般会嵌套 `2` 层的 `div` 做限制：
+
+  ```html
+  <style>
+  .container {
+    width: 100%;
+  }
+  .container-wrap {
+    min-width: 1440px;
+    margin: 0 auto;
+  }
+  </style>
+  <div class="container">
+    <div class="container-wrap"></div>
+  </div>
+  ```
+
+* `css` 实现居中的方案除了 `position` 和 `flex`，还有一个 `margin: 0 auto;`。真是 `flex` 写多了，连最简单的 `margin` 都遗忘了。但是 `margin` 无法实现元素在父元素的中心点居中，只能确保元素在当前文档流的居中。
