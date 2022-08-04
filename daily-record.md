@@ -343,3 +343,31 @@
   ```
 
 * `css` 实现居中的方案除了 `position` 和 `flex`，还有一个 `margin: 0 auto;`。真是 `flex` 写多了，连最简单的 `margin` 都遗忘了。但是 `margin` 无法实现元素在父元素的中心点居中，只能确保元素在当前文档流的居中。
+
+#### 2022.08.04
+
+##### 1. TS - 初遇知识点
+
+* 在 `ts` 开发中，因为使用到了 `antd` 的 `Form-hook`，基于这里我是二封了 `hook`，但是遇到变量类型的问题，最终使用 `typeof` 来解决。
+
+* 过程中不想去 `import type`，因为文件比较深处。想直接通过 `ts` 来自行推断，想了一些方法，最后发现直接使用 `typeof` 操作符，可以直接引用变量的类型：
+
+  ```typescript
+  const { validateInfos } = useForm(formData, formRules)
+  
+  type ValidateInfos = typeof validateInfos
+  ```
+
+* `ts` 毕竟是机器推断，有时候我们开发者比机器更清楚某个时刻的属性是否存在，所以 `ts` 提供了 `!` 操作符，在属性后面加上 `!` 表示此属性必定存在。
+
+  ```typescript
+  interface Person {
+    name: string
+    friends?: Person
+  }
+  
+  const p: Person = { name: 'J' }
+  p.friends!.name // 这样将断定friends属性存在
+  ```
+
+  其实上述例子应该使用 `可选链 ?` 更符合规范，但只是为了举个简单的例子！
