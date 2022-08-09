@@ -348,6 +348,8 @@
 
 ##### 1. TS - 初遇知识点
 
+> 参考文献：https://www.typescriptlang.org/docs/handbook/2/typeof-types.html
+
 * 在 `ts` 开发中，因为使用到了 `antd` 的 `Form-hook`，基于这里我是二封了 `hook`，但是遇到变量类型的问题，最终使用 `typeof` 来解决。
 
 * 过程中不想去 `import type`，因为文件比较深处。想直接通过 `ts` 来自行推断，想了一些方法，最后发现直接使用 `typeof` 操作符，可以直接引用变量的类型：
@@ -371,3 +373,44 @@
   ```
 
   其实上述例子应该使用 `可选链 ?` 更符合规范，但只是为了举个简单的例子！
+
+#### 2022.08.09
+
+##### 1. vuex
+
+> 参考文献：https://v3.vuex.vuejs.org/zh/guide/modules.html#模块的局部状态
+
+* `vuex` 是 `vue` 的周边插件。里面内置了 `module` 模块化的形式。这也是我们强烈建议在项目中使用的方式。
+
+* `vuex: module`：模块化方便我们使用局部的 `state` 状态管理，分两种状态，如下：
+
+  * 使用命名空间：需要将 `namespaced` 设置成 `true`，开启后 `getter`、`mutation`、`action`，都将会带有命名空间，使用时需要将模块名称带上，如下例子：
+
+    ```javascript
+    // moduleName - user
+    export default {
+      namespaced: true, // 开启命名空间标记
+      action: {
+        login() { ... }
+      }
+    }
+    
+    // 使用
+    this.$store.dispatch('user/login')
+    ```
+
+  * 不使用命名空间：默认情况，`getter`、`mutation`、`action`，最终其实都会被注册成全局的属性，使用时直接调用即可。
+
+    ```javascript
+    // moduleName - user
+    export default {
+      action: {
+        login() { ... }
+      }
+    }
+    
+    // 使用
+    this.$store.dispatch('login')
+    ```
+
+    
