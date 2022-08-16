@@ -413,4 +413,25 @@
     this.$store.dispatch('login')
     ```
 
-    
+
+#### 2022.08.16
+
+##### 1. rebase
+
+> 参考文献：https://www.jianshu.com/p/14f9eb70e99e
+
+* 在开发中，经常使用 `git pull origin xxx`，但是使用 `pull`，不指定合并类型时，默认会选择自动 `merge` 成一个新的节点。如下，会关联两个父节点的信息。
+
+  ![image-20220816221843848](C:\Users\Yo\AppData\Roaming\Typora\typora-user-images\image-20220816221843848.png)
+
+* 如果项目中太多有这样的 `merge` 信息，其实是不方便溯源的，所以 `git` 有另一种合并策略，就是 `rebase`，它会将当前分歧出来的 `commit`，整个合并进目标分支的最后一个 `commit`。
+
+  ![image-20220816224054632](C:\Users\Yo\AppData\Roaming\Typora\typora-user-images\image-20220816224054632.png)
+
+* 使用方式：`git pull --rebase origin xxx`。使用 `rebase` 合并后，节点是干净的，只有一个父节点的信息。
+
+  ![image-20220816223741365](C:\Users\Yo\AppData\Roaming\Typora\typora-user-images\image-20220816223741365.png)
+
+* 如果有合并冲突时，可以手动打开文件先解决好合并冲突，然后执行 `git rebase --continue`，继续下一个 `rebase`。
+
+* 如果需要放弃本次 `rebase`，可以执行 `git rebase --abort`。
